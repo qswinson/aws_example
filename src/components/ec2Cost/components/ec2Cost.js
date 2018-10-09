@@ -1,6 +1,6 @@
 import React, { Component }     from 'react';
 import { connect }              from 'react-redux';
-import { findEc2Cost }      from '../selectors';
+import { findEc2Cost }          from '../selectors';
 
 const mapStateToProps = (state, props) => ({
     price: findEc2Cost(state, props.instanceType, props.region)
@@ -22,4 +22,4 @@ class Ec2Cost extends Component {
     }
 }
 
-export default connect(mapStateToProps, { })(Ec2Cost);
+export default connect(mapStateToProps)(Ec2Cost);

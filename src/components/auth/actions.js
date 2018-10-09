@@ -1,6 +1,6 @@
 import { GET_API }          from '../../middleware/api';
-import AUTH from './actionTypes';
-import * as api from './api';
+import AUTH                 from './actionTypes';
+import * as api             from './api';
 
 export function getCredentials() {
     return (dispatch, getState) => {
@@ -43,5 +43,3 @@ export function logout() {
         dispatch({ type: AUTH.LOGOUT });
     }
 }
-
-

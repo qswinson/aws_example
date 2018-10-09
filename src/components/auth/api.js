@@ -17,8 +17,9 @@ export function handleAuthentication() {
     const api = init();
     return new Promise((resolve, reject) => {
         api.parseHash((err, authResult) => {
-            if (err)
+            if (err) {
                 return reject(err);
+            }
             console.log(authResult);
             if (!authResult || !authResult.idToken) {
                 return reject(err);

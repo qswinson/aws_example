@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import { connect }              from 'react-redux';
-import { authenticate } from '../actions';
+import { withRouter }       from 'react-router';
+import { connect }          from 'react-redux';
+import { authenticate }     from '../actions';
 
 class Callback extends Component {
     componentWillMount() {
