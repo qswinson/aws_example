@@ -1,6 +1,6 @@
 import React, { Component }     from 'react';
 import { connect }              from 'react-redux';
-import { loadAllEc2Instances }  from '../actions';
+import { loadAllEc2Instances,  selectEC2Instance }  from '../actions';
 import { getEc2Instances, getSelectedInstanceId }      from '../selectors';
 import Ec2Instance              from './ec2Instance';
 import Ec2Summary               from './ec2Summary';
@@ -28,8 +28,8 @@ class Ec2List extends Component {
 
         const list = instances.map((instance) => {
             return (instance.instanceId === selectedInstanceId) ?
-                <Ec2Instance key={instance.instanceId} ec2Instance={instance} /> :
-                <Ec2Summary key={instance.instanceId} ec2Instance={instance} />;
+                <Ec2Instance key={instance.instanceId} ec2Instance={instance} selectEC2Instance={this.props.selectEC2Instance} /> :
+                <Ec2Summary key={instance.instanceId} ec2Instance={instance} selectEC2Instance={this.props.selectEC2Instance} />;
         });
 
         return (
@@ -40,4 +40,4 @@ class Ec2List extends Component {
     }
 }
 
-export default connect(mapStateToProps, { loadAllEc2Instances })(Ec2List);
+export default connect(mapStateToProps, { loadAllEc2Instances, selectEC2Instance })(Ec2List);

@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectEC2Instance }  from '../actions';
 import { Ec2Cost } from '../../ec2Cost/components';
 
 const style = {
@@ -29,13 +27,12 @@ const style = {
     }
 };
 
-const Ec2Instance = ({ ec2Instance, ...props }) => {
+const Ec2Instance = ({ ec2Instance, selectEC2Instance, ...props }) => {
     const tags = ec2Instance.tags.map((element, index) => {
-        // return (element.key === 'Name') ? null : <span key={element.key}>element.value</span>;
         return (element.key === 'Name') ? null : <div key={index}>{element.key}: {element.value}</div>;
     });
 
-    return <div style={style.ec2Summary} onClick={() => props.selectEC2Instance()}>
+    return <div style={style.ec2Summary} onClick={selectEC2Instance}>
         <div style={style.title}>{ec2Instance.name}</div>
         <div>{ new Date(ec2Instance.launchTime).toLocaleString() }</div>
         <div>{ec2Instance.instanceType}</div>
@@ -56,4 +53,4 @@ Ec2Instance.propTypes = {
     }).isRequired
 };
 
-export default connect(null, { selectEC2Instance })(Ec2Instance);
+export default Ec2Instance;
