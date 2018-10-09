@@ -1,0 +1,11 @@
+import { createConstants } from '../../utils';
+
+export default createConstants(
+    'REQUEST_EC2INSTANCE',
+    'REQUEST_EC2INSTANCE_SUCCESS',
+    'REQUEST_EC2INSTANCE_ERROR',
+    'REQUEST_ALL_EC2INSTANCES',
+    'REQUEST_ALL_EC2INSTANCES_SUCCESS',
+    'REQUEST_ALL_EC2INSTANCES_ERROR',
+    'SELECT_EC2_INSTANCE'
+);
