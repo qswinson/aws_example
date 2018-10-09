@@ -1,5 +1,5 @@
 // import { camelizeKeys } from 'humps';
-// import { isFunction } from 'lodash';
+import { isFunction } from 'lodash';
 // import 'isomorphic-fetch';
 
 
@@ -17,10 +17,10 @@ function callApi(apiMethod, credentials) {
     });
 }
 
-function validateParameters(endpoint, types) {
-  // if (typeof endpoint !== 'string') {
-  //   throw new Error('Specify a string endpoint URL.');
-  // }
+function validateParameters(apiCall, types) {
+  if (!isFunction(apiCall)) {
+    throw new Error('Specify a function api call.');
+  }
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected an array of three action types.');
   }
@@ -40,13 +40,10 @@ export const getAPI = store => next => (action) => {
     return next(action);
   }
 
-  let { endpoint } = getActionAPI;
-  const { credentials, schema, types, mapResults } = getActionAPI;
-  // if (typeof endpoint === 'function') {
-  //   endpoint = endpoint(store.getState());
-  // }
+  let { apiCall } = getActionAPI;
+  const { credentials, types } = getActionAPI;
 
-  validateParameters(endpoint, types);
+  validateParameters(apiCall, types);
 
   function actionWith(data) {
     const finalAction = Object.assign({}, action, data);
@@ -57,7 +54,7 @@ export const getAPI = store => next => (action) => {
   const [requestType, successType, failureType] = types;
   next(actionWith({ type: requestType, loadInProgress: true }));
 
-  return callApi(endpoint, credentials).then(
+  return callApi(apiCall, credentials).then(
     response => next(actionWith({
       response,
       type: successType

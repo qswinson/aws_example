@@ -7,7 +7,7 @@ function fetchAllEc2Instances(credentials) {
     return {
         [GET_API]: {
             types: [EC2INSTANCE.REQUEST_ALL_EC2INSTANCES, EC2INSTANCE.REQUEST_ALL_EC2INSTANCES_SUCCESS, EC2INSTANCE.REQUEST_ALL_EC2INSTANCES_ERROR],
-            endpoint: api.fetchAllEc2Instances,
+            apiCall: api.fetchAllEc2Instances,
             credentials
         }
     };

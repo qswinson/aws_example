@@ -24,7 +24,7 @@ function handleAuthentication() {
     return {
         [GET_API]: {
             types: [AUTH.HANDLE_AUTHENTICATION, AUTH.HANDLE_AUTHENTICATION_SUCCESS, AUTH.HANDLE_AUTHENTICATION_ERROR],
-            endpoint: api.handleAuthentication
+            apiCall: api.handleAuthentication
         }
     };
 }
