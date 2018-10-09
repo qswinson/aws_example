@@ -20,7 +20,7 @@ export function login() {
     }
 }
 
-function getAuth() {
+function handleAuthentication() {
     return {
         [GET_API]: {
             types: [AUTH.HANDLE_AUTHENTICATION, AUTH.HANDLE_AUTHENTICATION_SUCCESS, AUTH.HANDLE_AUTHENTICATION_ERROR],
@@ -31,7 +31,7 @@ function getAuth() {
 
 export function authenticate(history) {
     return (dispatch) => {
-        return dispatch(getAuth())
+        return dispatch(handleAuthentication())
             .then(() => {
                 history.push('/');
             });
